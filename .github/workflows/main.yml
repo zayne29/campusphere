@@ -4,16 +4,13 @@
 name: main
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
   workflow_dispatch: 
   schedule: # 计划任务触发
-    - cron: '30 22 * * *'
+#     - cron: '30 22 * * *'
+    - cron: '37 14 * * *'
     - cron: '50 3 * * *'
     - cron: '30 10 * * *'
-    - cron: '34 22 * * *'
+    
 
 jobs:
   build:
