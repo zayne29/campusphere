@@ -6,7 +6,7 @@ name: main
 on:
   workflow_dispatch: 
   schedule: # 计划任务触发
-    - cron: '38 22 * * *'
+    - cron: '39 22 * * *'
 
     
 
