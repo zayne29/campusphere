@@ -99,7 +99,7 @@ def submitForm(signInstanceWid,awid,bwid,extension):
 if __name__ == '__main__':
     username = os.environ["USERNAME"]
     password = os.environ["PASSWORD"]
-    extension = os.environ["Cpdaily-Extension"]
+    extension = os.environ["CPDAILY_EXTENSION"]
     getLogin(username,password)
     getInfos()
     getForm(signInstanceWid,signWid)
