@@ -21,7 +21,7 @@ def getLogin(username,password):
         d.append(x.get('value'))
 
 
-    pd = execjs.compile(open(r"encrypt.js").read().encode('utf-8').decode("utf-8")).call('encryptAES',password,d[5])
+    pd = execjs.compile(open(r"encrypt.js").read()).call('encryptAES',password,d[5])
     # print(password)
 
     data={
