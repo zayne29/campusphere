@@ -1,5 +1,5 @@
 # campusphere
-今日校园签到
+深信今日校园签到
 
 
 CPDAILY_EXTENSION
