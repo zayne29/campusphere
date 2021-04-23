@@ -14,10 +14,10 @@ def getLogin(username,password):
     g_response=session.get(url)
 
     soup = bs(g_response.text, 'html.parser')
-    # dt=soup.find_all('input',type="hidden")
+    dt=soup.find_all('input',type="hidden")
     # print(dt)
     d=[]
-    for x in soup.find_all('input',type="hidden"):
+    for x in dt:
         d.append(x.get('value'))
 
 
@@ -45,7 +45,7 @@ def getLogin(username,password):
                'Upgrade-Insecure-Requests': '1',
                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36'
                }
-    p_response=session.post(url,data=data,headers=headers)
+    session.post(url,data=data,headers=headers)
 
 
 
