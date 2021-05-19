@@ -4,8 +4,9 @@ import execjs
 import requests
 from bs4 import BeautifulSoup as bs
 import os
+from fake_useragent import UserAgent
 
-
+ua = UserAgent()
 
 def getLogin(username,password):
     url="https://auth.sziit.edu.cn/authserver/login?service=https://sziit.campusphere.net/portal/login"
@@ -36,14 +37,7 @@ def getLogin(username,password):
     }
 
     headers = {'Content-Type': 'application/x-www-form-urlencoded',
-               'sec-ch-ua':'"Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"',
-               'sec-ch-ua-mobile': '?0',
-               'Sec-Fetch-Dest': 'document',
-               'Sec-Fetch-Mode': 'navigate',
-               'Sec-Fetch-Site': 'same-origin',
-               'Sec-Fetch-User': '?1',
-               'Upgrade-Insecure-Requests': '1',
-               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36'
+               'User-Agent': ua.random
                }
     session.post(url,data=data,headers=headers)
 
@@ -57,7 +51,7 @@ def getInfos():
     url = "https://sziit.campusphere.net/wec-counselor-sign-apps/stu/sign/getStuSignInfosInOneDay"
 
 
-    response = session.post(url, headers={'Content-Type': 'application/json;charset=UTF-8'}, data="{}")
+    response = session.post(url, headers={'Content-Type': 'application/json;charset=UTF-8','User-Agent': ua.random}, data="{}")
     # print(response.text)
     d = json.loads(response.text)
 
@@ -74,7 +68,7 @@ def getForm(signInstanceWid,signWid):
     payload = "\"signInstanceWid\": \"{a}\",\"signWid\": \"{b}\"".format(a=signInstanceWid,b=signWid)
     payload="{"+payload+"}"
 
-    response = session.post(url, headers={'Content-Type': 'application/json;charset=UTF-8'}, data=payload)
+    response = session.post(url, headers={'Content-Type': 'application/json;charset=UTF-8','User-Agent': ua.random}, data=payload)
     # print(response.text)
     d = json.loads(response.text)
 
@@ -92,7 +86,8 @@ def submitForm(signInstanceWid,awid,bwid,extension):
     url = "https://sziit.campusphere.net/wec-counselor-sign-apps/stu/sign/submitSign"
     header= {
     'Content-Type': 'application/json;charset=UTF-8',
-    'Cpdaily-Extension':extension
+    'Cpdaily-Extension':extension,
+    'User-Agent': ua.random
     }
     payload={"longitude":114.222966,"latitude":22.691566,"isMalposition":0,"abnormalReason":"","signPhotoUrl":"","isNeedExtra":1,"position":"中国广东省深圳市龙岗区龙格路301号","uaIsCpadaily":"true","signInstanceWid":str(signInstanceWid),"signVersion":"1.0.0","extraFieldItems":[{"extraFieldItemValue":"否","extraFieldItemWid":str(awid)},{"extraFieldItemValue":"否","extraFieldItemWid":str(bwid)}]}
     response = session.post(url, headers=header, json=payload)
