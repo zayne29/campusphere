@@ -4,29 +4,32 @@ import execjs
 import requests
 from bs4 import BeautifulSoup as bs
 import os
-from fake_useragent import UserAgent
 
-ua = UserAgent()
 
 def getLogin(username,password):
     url="https://auth.sziit.edu.cn/authserver/login?service=https://sziit.campusphere.net/iap/loginSuccess"
     global session
     session=requests.session()
     g_response=session.get(url)
-
+    # print(g_response.text)
     soup = bs(g_response.text, 'html.parser')
     dt=soup.find_all('input',type="hidden")
+
+    # scripttxt = soup.find_all("script")
+    # # print(scripttxt)
+    # pattern = re.compile('var pwdDefaultEncryptSalt = "(.*)";')
+    # pwdDefaultEncryptSalt = pattern.findall(str(scripttxt))
     # print(dt)
     d=[]
     for x in dt:
         d.append(x.get('value'))
-
 
     pd = execjs.compile(open(r"encrypt.js").read()).call('encryptAES',password,d[5])
 
     data={
         "username":username,
         "password":pd,
+        "captchaResponse":"",
         "lt":d[0],
         "dllt":d[1],
         "execution":d[2],
@@ -36,9 +39,10 @@ def getLogin(username,password):
     }
 
     headers = {'Content-Type': 'application/x-www-form-urlencoded',
-               'User-Agent': ua.random
+               'User-Agent': 'Mozilla/5.0 (Linux; Android 7.1.1; SM-N9300 Build/R2MZBS) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.6985.79 Mobile Safari/537.36 okhttp/3.12.4',
                }
     session.post(url,data=data,headers=headers)
+
 
 
 
@@ -51,7 +55,6 @@ def getInfos():
 
 
     response = session.post(url, headers={'Content-Type': 'application/json;charset=UTF-8'}, data="{}")
-    # print(response.text)
     d = json.loads(response.text)
 
 
