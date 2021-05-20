@@ -39,7 +39,7 @@ def getLogin(username,password):
     }
 
     headers = {'Content-Type': 'application/x-www-form-urlencoded',
-               'User-Agent': 'Mozilla/5.0 (Linux; Android 7.1.1; SM-N9300 Build/R2MZBS) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.6985.79 Mobile Safari/537.36 okhttp/3.12.4
+               'User-Agent': 'Mozilla/5.0 (Linux; Android 7.1.1; SM-N9300 Build/R2MZBS) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.6985.79 Mobile Safari/537.36 okhttp/3.12.4'
                }
     session.post(url,data=data,headers=headers)
 
