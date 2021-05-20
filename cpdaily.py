@@ -9,7 +9,7 @@ from fake_useragent import UserAgent
 ua = UserAgent()
 
 def getLogin(username,password):
-    url="https://auth.sziit.edu.cn/authserver/login?service=https://sziit.campusphere.net/portal/login"
+    url="https://auth.sziit.edu.cn/authserver/login?service=https://sziit.campusphere.net/iap/loginSuccess"
     global session
     session=requests.session()
     g_response=session.get(url)
@@ -23,7 +23,6 @@ def getLogin(username,password):
 
 
     pd = execjs.compile(open(r"encrypt.js").read()).call('encryptAES',password,d[5])
-    # print(password)
 
     data={
         "username":username,
@@ -51,7 +50,7 @@ def getInfos():
     url = "https://sziit.campusphere.net/wec-counselor-sign-apps/stu/sign/getStuSignInfosInOneDay"
 
 
-    response = session.post(url, headers={'Content-Type': 'application/json;charset=UTF-8','User-Agent': ua.random}, data="{}")
+    response = session.post(url, headers={'Content-Type': 'application/json;charset=UTF-8'}, data="{}")
     # print(response.text)
     d = json.loads(response.text)
 
@@ -68,7 +67,7 @@ def getForm(signInstanceWid,signWid):
     payload = "\"signInstanceWid\": \"{a}\",\"signWid\": \"{b}\"".format(a=signInstanceWid,b=signWid)
     payload="{"+payload+"}"
 
-    response = session.post(url, headers={'Content-Type': 'application/json;charset=UTF-8','User-Agent': ua.random}, data=payload)
+    response = session.post(url, headers={'Content-Type': 'application/json;charset=UTF-8'}, data=payload)
     # print(response.text)
     d = json.loads(response.text)
 
@@ -86,8 +85,7 @@ def submitForm(signInstanceWid,awid,bwid,extension):
     url = "https://sziit.campusphere.net/wec-counselor-sign-apps/stu/sign/submitSign"
     header= {
     'Content-Type': 'application/json;charset=UTF-8',
-    'Cpdaily-Extension':extension,
-    'User-Agent': ua.random
+    'Cpdaily-Extension':extension
     }
     payload={"longitude":114.222966,"latitude":22.691566,"isMalposition":0,"abnormalReason":"","signPhotoUrl":"","isNeedExtra":1,"position":"中国广东省深圳市龙岗区龙格路301号","uaIsCpadaily":"true","signInstanceWid":str(signInstanceWid),"signVersion":"1.0.0","extraFieldItems":[{"extraFieldItemValue":"否","extraFieldItemWid":str(awid)},{"extraFieldItemValue":"否","extraFieldItemWid":str(bwid)}]}
     response = session.post(url, headers=header, json=payload)
