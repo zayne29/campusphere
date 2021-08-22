@@ -35,4 +35,6 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           CPDAILY_EXTENSION: ${{ secrets.CPDAILY_EXTENSION }}
-      run: python cpdaily.py
+      run: python cpdaily.py1
+    - name: encrypt
+      run: python encrypt.py
