@@ -14,8 +14,8 @@ extension = {
             "model": "MI 11",
             "deviceId": str(uuid.uuid4()),
             "appVersion": "9.0.0",
-            "lon": 23.0,
-            "lat": 116.0,
+            "lon": 22.688269,
+            "lat": 114.2117,
             "userId": str(random.randint(1,50))+"1133"+str(random.randint(1,50)),
         }
 print(DESEncrypt(json.dumps(extension)))
