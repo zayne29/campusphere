@@ -10,8 +10,8 @@ def DESEncrypt(s,Key="b3L26XNL"):
     return base64.b64encode(encrypt_str).decode()
 extension = {
             "systemName": "android",
-            "systemVersion": "11",
-            "model": "MI 11",
+            "systemVersion": "12",
+            "model": "MI 12",
             "deviceId": str(uuid.uuid4()),
             "appVersion": "9.0.0",
             "lon": 22.688269,
