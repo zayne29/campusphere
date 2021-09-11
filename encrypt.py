@@ -16,6 +16,6 @@ extension = {
             "appVersion": "9.0.0",
             "lon": 22.688269,
             "lat": 114.2117,
-            "userId": str(random.randint(1,50))+"1133"+str(random.randint(1,50)),
+            "userId": str(random.randint(1,50))+"1a133"+str(random.randint(1,50)),
         }
 print(DESEncrypt(json.dumps(extension)))
