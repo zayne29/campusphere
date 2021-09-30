@@ -31,5 +31,5 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
-    - name: encrypt
-      run: python encrypt.py
+    - name: cpdaily
+      run: python cpdaily.py
