@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import os
 
+ua = 'Mozilla/5.0 (Linux; Android 11; M2102J2SC) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Mobile Safari/537.36'
 
 def getLogin(username,password):
     url="https://auth.sziit.edu.cn/authserver/login?service=https://sziit.campusphere.net/iap/loginSuccess"
