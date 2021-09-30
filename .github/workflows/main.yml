@@ -32,4 +32,8 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
     - name: cpdaily
+      env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          CPDAILY_EXTENSION: ${{ secrets.CPDAILY_EXTENSION }}
       run: python cpdaily.py
