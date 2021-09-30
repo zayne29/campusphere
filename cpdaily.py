@@ -79,7 +79,11 @@ if __name__ == '__main__':
     username = os.environ["USERNAME"]
     password = os.environ["PASSWORD"]
     extension = os.environ["CPDAILY_EXTENSION"]
-    getLogin(username,password)
-    getInfos()
-    getForm(signInstanceWid,signWid)
-    submitForm(signInstanceWid,awid,bwid,extension)
+    username = username.split("&")
+    password = password.split("&")
+    extension = extension.split("&")
+    for i in range(len(username)):
+        getLogin(username[i],password[i])
+        getInfos()
+        getForm(signInstanceWid,signWid)
+        submitForm(signInstanceWid,awid,bwid,extension[i])
