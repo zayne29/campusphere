@@ -28,8 +28,7 @@ def getLogin(username,password):
         "dllt":d[1],
         "execution":d[2],
         "_eventId":d[3],
-        "rmShown":d[4],
-        "rememberMe":"on"
+        "rmShown":d[4]
     }
 
     headers = {'Content-Type': 'application/x-www-form-urlencoded',
